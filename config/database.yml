@@ -1,3 +1,8 @@
+sqlite: &sqlite
+  adapter: sqlite3
+  pool: 5
+  timeout: 5000
+
 mysql: &mysql
   adapter: mysql2
   encoding: utf8
@@ -9,7 +14,11 @@ mysql: &mysql
   password: "<%= ENV["C4SA_MYSQL_PASSWORD"] %>"
 
 development:
-  <<: *mysql
+  <<: *sqlite
+  database: db/development.sqlite3
 
 production:
   <<: *mysql
+  
+#development:
+#  <<: *mysql
